@@ -5,7 +5,9 @@ class PostsController < ApplicationController
     end
   
     def index
-        @posts = User.find(current_user.id).posts
+        if current_user
+            @posts = User.find(current_user.id).posts
+        end
     end
   
     def show
