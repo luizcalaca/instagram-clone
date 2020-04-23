@@ -28,10 +28,10 @@
 
                     <%  if current_user %>
                         <li>
-                        <%= link_to "New Post", new_post_path %>
+                        <%= link_to "New Post ", new_post_path %>
                         </li>
                         <li>
-                        <%= link_to "Logout", destroy_user_session_url, :method => :delete, confirm: "Are you sure?" %>
+                        <%= link_to "Logout - #{current_user.email}" , destroy_user_session_url, :method => :delete, confirm: "Are you sure?" %>
                         </li>
                     <% else %>
                         <li>
