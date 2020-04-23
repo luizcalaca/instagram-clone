@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     end
   
     def index
-        @posts = Post.all
+        @posts = User.find(current_user.id).posts
     end
   
     def show
@@ -14,6 +14,8 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(permit_post)
+        @post.user_id = current_user.id
+        
         if @post.save
             flash[:success] = "Success!"
             redirect_to post_path(@post)
@@ -26,6 +28,6 @@ class PostsController < ApplicationController
     private
 
     def permit_post
-        params.require(:post).permit(:image, :description)
+        params.require(:post).permit(:image, :description, :user_id)
     end
 end

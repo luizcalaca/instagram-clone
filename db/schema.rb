@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_202619) do
+ActiveRecord::Schema.define(version: 2020_04_23_010958) do
 
   create_table "posts", force: :cascade do |t|
     t.text "description"
@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2020_04_22_202619) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +36,5 @@ ActiveRecord::Schema.define(version: 2020_04_22_202619) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "users"
 end
