@@ -1,12 +1,17 @@
 
 <% if current_user %>
-<% @posts.each do |x| %>
+    <% @posts.each do |x| %>
 
-    <div class="white">
-        <%= image_tag x.image.url(:medium) %>
-        <br>
-        <%= x.description %>
-    </div>
+        <div class="white">
+            <%= image_tag x.image.url(:medium) %>
+            <br>
+            <%= link_to "Curtir", controller: "likes", action: "create", post_id: x.id %>
+            <br>
+            <%= x.description %>
+            <% if x.like %>
+                - Curtidas(<%= x.like.counter %>)
+            <% end %>
+        </div>
 
-<% end %>
+    <% end %>
 <% end %>
