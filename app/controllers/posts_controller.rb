@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     def index
         if current_user
             @posts = User.find(current_user.id).posts
+            #@teste = GithubAPI::consumeAPIGithub
         end
     end
   
